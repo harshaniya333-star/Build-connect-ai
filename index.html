@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URBAN AURA — Your Space, Your Choice, Your Vision</title>
+  <meta name="description" content="URBAN AURA is a next-generation modern construction and AI architecture ecosystem. Compare verified contractors, generate instant AI 3D conceptual designs, track live building milestones, and manage post-construction smart electricity and maintenance.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/></svg>">
+
+  <!-- Google Fonts & Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Lucide Icons & Chart.js -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Science Expo Demonstration Bar -->
+  <header class="expo-banner">
+    <div class="expo-badge">
+      <span class="pulse-dot"></span>
+      <span>SCIENCE EXPO 2026 • LIVE PROTOTYPE</span>
+    </div>
+
+    <div class="role-switcher-group">
+      <span style="font-size: 0.72rem; color: var(--text-dim); margin-right: 4px;">Role:</span>
+      <button class="role-btn active" data-role="customer" onclick="app.quickLoginAs('customer')">
+        <i data-lucide="user" style="width:12px; height:12px; display:inline;"></i> Customer (Rajesh)
+      </button>
+      <button class="role-btn" data-role="company" onclick="app.quickLoginAs('company', 'comp_1')">
+        <i data-lucide="hard-hat" style="width:12px; height:12px; display:inline;"></i> Builder (Apex Infra)
+      </button>
+      <button class="role-btn" data-role="company" onclick="app.quickLoginAs('company', 'comp_2')">
+        <i data-lucide="pencil-ruler" style="width:12px; height:12px; display:inline;"></i> Architect (AuraCraft)
+      </button>
+      <button class="role-btn" data-role="guest" onclick="app.quickLoginAs('guest')">
+        Guest
+      </button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button class="tour-trigger-btn" onclick="app.startPresentationTour()">
+        <i data-lucide="play-circle" style="width:14px; height:14px;"></i> Expo Tour Guide
+      </button>
+      <button class="btn-sm btn-secondary" style="font-size: 0.75rem; padding: 4px 10px;" onclick="window.appStore.resetDemoData(); app.showToast('Demo state reset to original seed!', 'info'); app.renderCurrentView();">
+        <i data-lucide="rotate-ccw" style="width:12px; height:12px; display:inline;"></i> Reset Data
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Navigation Header -->
+  <nav class="site-header">
+    <div class="app-container">
+      <div class="nav-wrap">
+        <!-- Brand Logo -->
+        <a href="#home" class="brand-logo" onclick="app.navigateTo('home')">
+          <div class="brand-icon-box">
+            <i data-lucide="building" style="width:24px; height:24px; color:#070b14;"></i>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">URBAN AURA</span>
+            <span class="brand-tagline">Your Space, Your Choice, Your Vision.</span>
+          </div>
+        </a>
+
+        <!-- Main Navigation Links -->
+        <ul class="main-nav-links">
+          <li><a href="#home" class="nav-link active" data-view="home" onclick="app.navigateTo('home')"><i data-lucide="home" style="width:15px; height:15px;"></i> Home</a></li>
+          <li><a href="#explore" class="nav-link" data-view="explore" onclick="app.navigateTo('explore')"><i data-lucide="search" style="width:15px; height:15px;"></i> Explore Builders</a></li>
+          <li><a href="#compare" class="nav-link" data-view="compare" onclick="app.navigateTo('compare')"><i data-lucide="columns" style="width:15px; height:15px;"></i> Compare</a></li>
+          <li><a href="#ai-studio" class="nav-link" data-view="ai-studio" onclick="app.navigateTo('ai-studio')" style="color: var(--accent-gold); font-weight: 600;"><i data-lucide="sparkles" style="width:15px; height:15px;"></i> AI Design Studio</a></li>
+          <li><a href="#customer-dashboard" class="nav-link" data-view="customer-dashboard" onclick="app.navigateTo('customer-dashboard')"><i data-lucide="layout-dashboard" style="width:15px; height:15px;"></i> Project Tracker</a></li>
+          <li><a href="#electricity" class="nav-link" data-view="electricity" onclick="app.navigateTo('electricity')"><i data-lucide="zap" style="width:15px; height:15px;"></i> Smart Power</a></li>
+          <li><a href="#maintenance" class="nav-link" data-view="maintenance" onclick="app.navigateTo('maintenance')"><i data-lucide="wrench" style="width:15px; height:15px;"></i> Maintenance</a></li>
+        </ul>
+
+        <!-- Navigation Right Actions -->
+        <div class="nav-actions">
+          <div id="header-user-badge" class="user-profile-badge" onclick="app.showAuthModal()">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dynamic View Container (SPA Routing) -->
+  <main id="main-view-container">
+    <!-- View content rendered via js/app.js -->
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="app-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <div class="brand-icon-box" style="width: 36px; height: 36px;">
+              <i data-lucide="building" style="width:20px; height:20px; color:#070b14;"></i>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name" style="font-size: 1.15rem;">URBAN AURA</span>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px;">
+            “Your Space, Your Choice, Your Vision.” <br>
+            Empowering homeowners and construction companies with unified discovery, AI conceptual architecture, transparent milestone execution, and IoT property care.
+          </p>
+          <span class="badge badge-gold">Official Science Expo Prototype 2026</span>
+        </div>
+
+        <div class="footer-col">
+          <h5>Platform Solutions</h5>
+          <ul class="footer-links">
+            <li><a href="#explore" onclick="app.navigateTo('explore')">Browse Construction Firms</a></li>
+            <li><a href="#compare" onclick="app.navigateTo('compare')">Compare Builder Metrics</a></li>
+            <li><a href="#ai-studio" onclick="app.navigateTo('ai-studio')">AI Conceptual Design Studio</a></li>
+            <li><a href="#request" onclick="app.navigateTo('request')">Construction Milestone Request</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Post-Build Intelligence</h5>
+          <ul class="footer-links">
+            <li><a href="#electricity" onclick="app.navigateTo('electricity')">Smart IoT Power Monitor</a></li>
+            <li><a href="#electricity" onclick="app.navigateTo('electricity')">Solar Rooftop Net-Metering</a></li>
+            <li><a href="#maintenance" onclick="app.navigateTo('maintenance')">2-Hour Maintenance Care</a></li>
+            <li><a href="#maintenance" onclick="app.navigateTo('maintenance')">3-Year Structure Warranty</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Portals & Demo</h5>
+          <ul class="footer-links">
+            <li><a href="#customer-dashboard" onclick="app.navigateTo('customer-dashboard')">Customer Project Tracker</a></li>
+            <li><a href="#company-dashboard" onclick="app.quickLoginAs('company', 'comp_1')">Contractor Enterprise Portal</a></li>
+            <li><a href="javascript:void(0)" onclick="app.startPresentationTour()">Judge Demonstration Tour</a></li>
+            <li><a href="javascript:void(0)" onclick="app.showAuthModal()">Authentication & Sign-in</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 URBAN AURA Inc. Developed for Science Expo Demonstration. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Modal Dialog Container -->
+  <div id="global-modal-backdrop" class="modal-backdrop">
+    <div id="global-modal-container"></div>
+  </div>
+
+  <!-- Real-time Toast Notifications Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ai-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
